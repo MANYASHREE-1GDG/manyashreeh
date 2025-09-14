@@ -1,0 +1,69 @@
+import React from "react";
+
+export default function Portfolio() {
+  return (
+    <div className="min-h-screen bg-gradient-to-b from-purple-100 via-white to-purple-50 text-slate-900 font-sans">
+      {/* Hero Section */}
+      <header className="text-center py-12">
+        <h1 className="text-4xl md:text-5xl font-extrabold text-purple-800">Manyashree H</h1>
+        <p className="text-lg text-slate-600 mt-2">Aspiring VLSI Engineer • Frontend Developer • Fitness Enthusiast</p>
+        <div className="mt-4 flex justify-center gap-4">
+          <a href="#projects" className="px-5 py-2 bg-purple-600 text-white rounded-xl shadow hover:opacity-90">View Projects</a>
+          <a href="#contact" className="px-5 py-2 border border-purple-600 text-purple-600 rounded-xl hover:bg-purple-100">Contact</a>
+        </div>
+      </header>
+
+      {/* Projects Section */}
+      <section id="projects" className="max-w-5xl mx-auto px-6 py-10">
+        <h2 className="text-3xl font-bold text-center text-purple-700">Projects</h2>
+        <div className="grid md:grid-cols-2 gap-6 mt-8">
+          {[{
+            title: "Weather App (API)",
+            desc: "Built a web app using OpenWeather API to display weather info.",
+            tech: "React, Fetch API"
+          }, {
+            title: "Linear Regression from Scratch",
+            desc: "Implemented linear regression using NumPy and compared results with sklearn.",
+            tech: "Python, NumPy, Matplotlib"
+          }, {
+            title: "GitHub Workflow Practice",
+            desc: "Practiced branching, pull requests, and GitHub Actions for CI.",
+            tech: "Git, GitHub Actions"
+          }, {
+            title: "Linux CLI Automation",
+            desc: "Automated folder creation and text file operations in Ubuntu.",
+            tech: "Bash, Ubuntu"
+          }].map((project, i) => (
+            <div key={i} className="p-5 bg-white rounded-xl shadow hover:shadow-lg transition">
+              <h3 className="text-xl font-semibold text-purple-700">{project.title}</h3>
+              <p className="mt-2 text-slate-600 text-sm">{project.desc}</p>
+              <p className="mt-3 text-xs text-slate-500">Tech: {project.tech}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Skills Section */}
+      <section id="skills" className="bg-purple-50 py-10">
+        <h2 className="text-3xl font-bold text-center text-purple-700">Skills</h2>
+        <div className="max-w-4xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-4 mt-6 px-6">
+          {["Python","NumPy","React","Matplotlib","Git & GitHub","Linux CLI","Embedded C","VLSI Basics"].map((skill, i) => (
+            <span key={i} className="p-3 bg-white border rounded-lg text-center shadow-sm hover:shadow-md">{skill}</span>
+          ))}
+        </div>
+      </section>
+
+      {/* Contact Section */}
+      <section id="contact" className="max-w-4xl mx-auto px-6 py-12">
+        <h2 className="text-3xl font-bold text-center text-purple-700">Contact Me</h2>
+        <div className="mt-6 text-center">
+          <p className="text-slate-600">Email: <a href="mailto:harishmanyagowda@gmail.com" className="text-purple-600">harishmanyagowda@gmail.com</a></p>
+          <p className="text-slate-600 mt-1">Phone: 9148815471</p>
+          <p className="text-slate-600 mt-1">LinkedIn: <a href="https://www.linkedin.com/in/manyashree-h-88124a324" className="text-purple-600">manyashree-h</a></p>
+        </div>
+      </section>
+
+      <footer className="text-center py-6 text-slate-500 text-sm">© {new Date().getFullYear()} Manyashree H — Built with ❤️</footer>
+    </div>
+  );
+}
