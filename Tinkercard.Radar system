@@ -1,0 +1,57 @@
+#include <Servo.h>
+
+// Pin connections
+const int trigPin = 9;   // Ultrasonic sensor trigger pin
+const int echoPin = 10;  // Ultrasonic sensor echo pin
+Servo myServo;           // Servo motor
+
+// Variables
+long duration;
+int distance;
+
+void setup() {
+  pinMode(trigPin, OUTPUT);
+  pinMode(echoPin, INPUT);
+  myServo.attach(11);   // Servo connected to pin 11
+  Serial.begin(9600);   // Start Serial communication
+}
+
+void loop() {
+  // Rotate servo from 0° to 180°
+  for (int angle = 0; angle <= 180; angle += 2) {
+    myServo.write(angle);
+    delay(30);  // Give time to move
+    distance = calculateDistance();
+    Serial.print("Angle: ");
+    Serial.print(angle);
+    Serial.print("°  Distance: ");
+    Serial.print(distance);
+    Serial.println(" cm");
+  }
+
+  // Rotate servo back from 180° to 0°
+  for (int angle = 180; angle >= 0; angle -= 2) {
+    myServo.write(angle);
+    delay(30);
+    distance = calculateDistance();
+    Serial.print("Angle: ");
+    Serial.print(angle);
+    Serial.print("°  Distance: ");
+    Serial.print(distance);
+    Serial.println(" cm");
+  }
+}
+
+// Function to calculate distance using Ultrasonic sensor
+int calculateDistance() {
+  digitalWrite(trigPin, LOW);
+  delayMicroseconds(2);
+
+  digitalWrite(trigPin, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(trigPin, LOW);
+
+  duration = pulseIn(echoPin, HIGH);
+  distance = duration * 0.034 / 2;  // Speed of sound (340 m/s)
+  return distance;
+}
